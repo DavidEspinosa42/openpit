@@ -1,0 +1,54 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 62rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+}
+
+.card h2 {
+  margin-bottom: 0.6rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem 1.5rem;
+}
+
+.actions .field {
+  min-width: 18rem;
+  flex: 1 1 18rem;
+}
+
+.success {
+  color: var(--ok);
+  font-weight: 600;
+  margin: 0.75rem 0 0;
+}
+
+.issues {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: var(--blocking-soft);
+  border: 2px solid var(--blocking);
+  border-radius: var(--radius);
+}
+
+.issues h3 {
+  color: var(--blocking);
+  margin-bottom: 0.3rem;
+}
+
+.issues ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  overflow-wrap: anywhere;
+}
