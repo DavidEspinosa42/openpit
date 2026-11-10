@@ -1,4 +1,5 @@
 import type { SqlDatabase } from "./db.ts";
+import { type SyncableDatabase, withDurableTransactions } from "./durable.ts";
 import { migrate } from "./migrate.ts";
 import { createRepository, type Repository } from "./repository.ts";
 
@@ -14,7 +15,9 @@ export async function openDatabase(dataDir?: string): Promise<SqlDatabase> {
   const { PGlite } = await import("@electric-sql/pglite");
   const db = new PGlite(dataDir);
   await db.waitReady;
-  return db as unknown as SqlDatabase;
+  const syncable = db as unknown as SyncableDatabase;
+  // Only persistent databases need explicit flushing; in-memory ones are used as they are.
+  return dataDir?.startsWith("idb://") ? withDurableTransactions(syncable) : syncable;
 }
 
 export interface Storage {

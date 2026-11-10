@@ -312,7 +312,7 @@ export function createRepository(db: SqlDatabase): Repository {
     },
 
     async deleteDay(date) {
-      await db.query("DELETE FROM schedule_day WHERE date = $1", [date]);
+      await db.transaction((tx) => tx.query("DELETE FROM schedule_day WHERE date = $1", [date]));
     },
 
     async replaceWorkspace(data) {
