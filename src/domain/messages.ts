@@ -86,3 +86,20 @@ export function formatConflict(conflict: Conflict, lookup: MessageLookup): strin
       return `${a} has no vehicles assigned.`;
   }
 }
+
+/** Short names for the rules, for headings in the UI and CLI. */
+export const CONFLICT_TITLES: Record<Conflict["code"], string> = {
+  OUTSIDE_OPERATING_HOURS: "Outside operating hours",
+  TRACK_SECTION_OVERLAP: "Track section used twice",
+  TRACK_CLEARANCE_TOO_SHORT: "Track clearance too short",
+  TRACK_CLOSED: "Track section closed",
+  LAYOUT_CAPACITY_EXCEEDED: "Layout capacity exceeded",
+  CATEGORY_NOT_ALLOWED: "Vehicle category not allowed",
+  MIXED_CATEGORIES: "Mixed vehicle categories",
+  VEHICLE_DOUBLE_BOOKED: "Vehicle double-booked",
+  VEHICLE_UNAVAILABLE: "Vehicle unavailable",
+  VEHICLE_TURNAROUND_TOO_SHORT: "Vehicle turnaround too short",
+  PIT_BOX_DOUBLE_BOOKED: "Pit box double-booked",
+  PIT_BOX_CAPACITY_EXCEEDED: "Pit box capacity exceeded",
+  NO_VEHICLES_ASSIGNED: "No vehicles assigned",
+};
