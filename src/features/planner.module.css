@@ -1,0 +1,166 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.printTitle {
+  display: none;
+}
+
+.dayBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem 1.5rem;
+  padding: 0.8rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.dayBar .field {
+  min-width: 11rem;
+}
+
+.addDay {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.dayActions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.heading {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.summary {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (min-width: 70rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 23rem;
+  }
+  .sideColumn {
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+  }
+}
+
+.mainColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.hintLine {
+  margin: 0.5rem 0 0;
+  color: var(--ink-soft);
+}
+
+.schedule {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  margin-top: 0.5rem;
+}
+
+.sub {
+  display: block;
+  font-weight: 400;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+}
+
+.messages {
+  margin: 0;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+}
+
+.cancelledRow th,
+.cancelledRow td {
+  color: var(--ink-soft);
+}
+
+.cancelledRow th:first-of-type {
+  text-decoration: line-through;
+}
+
+.empty {
+  max-width: 44rem;
+  margin: 3rem auto;
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.empty h1 {
+  margin-bottom: 0.75rem;
+}
+
+.emptyActions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.emptyActions a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+@media print {
+  .printTitle {
+    display: block;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  .layout {
+    display: block;
+  }
+  .schedule {
+    border: 0;
+    padding: 0;
+  }
+  .tableWrap {
+    overflow: visible;
+  }
+  .cancelledRow th:first-of-type {
+    text-decoration: line-through;
+  }
+  .tableWrap tr {
+    break-inside: avoid;
+  }
+}
