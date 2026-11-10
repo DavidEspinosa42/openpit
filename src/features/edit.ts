@@ -66,19 +66,6 @@ export function emptyDay(date: string): ScheduleDay {
   return { date, revision: 0, sessions: [], closures: [], unavailabilities: [] };
 }
 
-/** Moves a session to a new time block, keeping everything else. */
-export function moveSession(
-  day: ScheduleDay,
-  sessionId: string,
-  startMinute: number,
-  endMinute: number,
-): ScheduleDay {
-  return {
-    ...day,
-    sessions: day.sessions.map((s) => (s.id === sessionId ? { ...s, startMinute, endMinute } : s)),
-  };
-}
-
 // ---------------------------------------------------------------------------------------
 // Session form
 // ---------------------------------------------------------------------------------------

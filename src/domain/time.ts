@@ -33,17 +33,6 @@ export function isOnGrid(minute: number, gridMinutes: number): boolean {
   return Number.isInteger(minute) && minute % gridMinutes === 0;
 }
 
-/** Valid interval: integer bounds, 0 <= start < end <= 1440. */
-export function isValidInterval(interval: Interval): boolean {
-  return (
-    Number.isInteger(interval.startMinute) &&
-    Number.isInteger(interval.endMinute) &&
-    interval.startMinute >= 0 &&
-    interval.startMinute < interval.endMinute &&
-    interval.endMinute <= MINUTES_PER_DAY
-  );
-}
-
 /** Formats minutes since midnight as 24-hour HH:MM. 1440 formats as "24:00". */
 export function formatMinute(minute: number): string {
   const hours = Math.floor(minute / 60);

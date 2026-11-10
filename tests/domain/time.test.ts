@@ -6,7 +6,6 @@ import {
   intervalsOverlap,
   isOnGrid,
   isValidDateString,
-  isValidInterval,
   parseTime,
 } from "../../src/domain/time.ts";
 
@@ -52,19 +51,6 @@ describe("intervalContains", () => {
   it("rejects intervals sticking out on either side", () => {
     expect(intervalContains(iv(480, 1080), iv(475, 600))).toBe(false);
     expect(intervalContains(iv(480, 1080), iv(1000, 1085))).toBe(false);
-  });
-});
-
-describe("isValidInterval", () => {
-  it("accepts the whole day", () => {
-    expect(isValidInterval(iv(0, 1440))).toBe(true);
-  });
-  it("rejects empty, reversed, out-of-range and fractional intervals", () => {
-    expect(isValidInterval(iv(60, 60))).toBe(false);
-    expect(isValidInterval(iv(90, 60))).toBe(false);
-    expect(isValidInterval(iv(-5, 60))).toBe(false);
-    expect(isValidInterval(iv(0, 1441))).toBe(false);
-    expect(isValidInterval(iv(0.5, 60))).toBe(false);
   });
 });
 

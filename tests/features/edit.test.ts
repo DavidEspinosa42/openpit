@@ -4,7 +4,6 @@ import {
   addUnavailability,
   draftFromSession,
   emptyDay,
-  moveSession,
   newDraft,
   nextId,
   removeClosure,
@@ -38,13 +37,11 @@ describe("day edits", () => {
     expect(day).toEqual(before);
   });
 
-  it("removes, cancels, restores and moves a session", () => {
+  it("removes, cancels and restores a session", () => {
     expect(removeSession(day, "a").sessions.map((s) => s.id)).toEqual(["b"]);
     const cancelled = setSessionStatus(day, "a", "cancelled");
     expect(cancelled.sessions.find((s) => s.id === "a")?.status).toBe("cancelled");
     expect(setSessionStatus(cancelled, "a", "planned").sessions[0]?.status).toBe("planned");
-    const moved = moveSession(day, "a", 700, 760);
-    expect(moved.sessions[0]).toMatchObject({ startMinute: 700, endMinute: 760 });
   });
 
   it("adds and removes closures and unavailability windows", () => {
