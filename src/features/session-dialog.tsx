@@ -54,6 +54,7 @@ export function SessionDialog({
   const [suggestions, setSuggestions] = useState<Suggestion[] | null>(null);
   const [note, setNote] = useState("");
   const [busy, setBusy] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     const dialog = ref.current;
@@ -84,6 +85,7 @@ export function SessionDialog({
     setDraft((d) => ({ ...d, ...patch }));
     setSuggestions(null);
     setNote("");
+    setFailed(false);
   };
 
   const fieldError = (field: DraftField) => errors[field];
@@ -101,6 +103,7 @@ export function SessionDialog({
     const saved = await onSave(checked.session);
     setBusy(false);
     if (saved) ref.current?.close();
+    else setFailed(true);
   };
 
   const suggest = () => {
@@ -127,6 +130,7 @@ export function SessionDialog({
     const done = await action();
     setBusy(false);
     if (done) ref.current?.close();
+    else setFailed(true);
   };
 
   const categoryName = (id: string) => config.categories.find((c) => c.id === id)?.name ?? id;
@@ -347,6 +351,13 @@ export function SessionDialog({
             {note ? <p>{note}</p> : null}
           </div>
         </section>
+
+        {failed ? (
+          <p role="alert" className="error">
+            The change was not saved. The schedule on screen is the stored one. The reason is shown
+            at the top of the page after you close this dialog.
+          </p>
+        ) : null}
 
         <div className={styles.buttons}>
           <button type="submit" className="btn btnPrimary" disabled={busy}>
