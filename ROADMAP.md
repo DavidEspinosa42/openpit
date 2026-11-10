@@ -1,25 +1,30 @@
 # Roadmap
 
-Estimates are planning figures made on 2026-11-10, not commitments.
+Estimates are planning figures made on 2026-11-10, not commitments. The MVP estimate was about 65 hours; actual effort was not tracked.
 
-## Completed
+## Completed: the MVP
 
-Nothing is completed yet. The MVP is in progress; see the phases below.
+| Phase           | What exists                                                                                                                                                                                      |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| M0 Foundations  | Repository, MIT license, README, contributor conventions, domain and landscape documents, architecture decision records, tooling (Next.js static export, TypeScript, Biome, Vitest), CI workflow |
+| M1 Domain       | Types, Zod schemas, minute-based time utilities, reference checker, workspace parser with size limit, fictional sample workspace, seeded generator                                               |
+| M2 Engine       | `validateDay` with 13 conflict rules and a stable total order, tested for determinism and for a 200-session day                                                                                  |
+| M3 CLI          | `pnpm validate` (exit codes 0, 1, 2, JSON output) and `pnpm generate:sample`                                                                                                                     |
+| M4 Storage      | PGlite on IndexedDB (spike confirmed, see ADR 0004), SQL migrations, repository with revisions and atomic import, single-tab Web Lock                                                            |
+| M5 Planner UI   | Planner and Data screens: timeline, session dialog, conflicts panel, closures and unavailability, import and export, print stylesheet                                                            |
+| M6 Suggestions  | `suggestSlots`: nearest conflict-free start times, checked for soundness against a full validation                                                                                               |
+| M7 Quality pass | Screenshots from the running app, README matched to behavior, unused code removed, secret and history scan                                                                                       |
 
-## MVP (target about 65 h)
+### Known limits of the MVP
 
-| Phase           | Deliverable                                                             | Est. | Status      |
-| --------------- | ----------------------------------------------------------------------- | ---- | ----------- |
-| M0 Foundations  | Repository, docs, ADRs, tooling, CI                                     | 7 h  | in progress |
-| M1 Domain       | Types, Zod schemas, time utilities, reference checker, sample workspace | 7 h  | planned     |
-| M2 Engine       | `validateDay` with 13 rule codes, stable ordering                       | 14 h | planned     |
-| M3 CLI          | `pnpm validate`, sample generator                                       | 3 h  | planned     |
-| M4 Storage      | PGlite spike, migrations, repository, single-tab lock                   | 9 h  | planned     |
-| M5 Planner UI   | Session editing, conflicts panel, import/export, print view             | 16 h | planned     |
-| M6 Suggestions  | Nearest conflict-free start times                                       | 4 h  | planned     |
-| M7 Quality pass | Screenshots, README accuracy, cleanup, scans                            | 5 h  | planned     |
+- Verified in Chromium only. Firefox and Safari were not tried.
+- The GitHub Actions workflow has not run on GitHub; its steps were run locally.
+- Accessibility: automated audit and a hand check of the keyboard path; no full WCAG 2.2 AA audit (R8).
+- The print layout was checked by applying the print rules on screen, not in a real print preview.
+- Not installable and not usable offline from a cold start (R1).
+- The school configuration can only be changed by editing the JSON file and importing it (R7).
 
-## After the MVP (planned)
+## Planned after the MVP
 
 | Phase                           | Scope                                                                                                                                                          | Depends on                          | Est. |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ---- |
