@@ -18,7 +18,8 @@
     "format": "biome check --write .",
     "test": "vitest run",
     "validate": "node scripts/validate-schedule.ts",
-    "generate:sample": "node scripts/generate-sample.ts"
+    "generate:sample": "node scripts/generate-sample.ts",
+    "build:migrations": "node scripts/build-migrations.ts && biome check --write src/storage/migrations.generated.ts"
   },
   "dependencies": {
     "@electric-sql/pglite": "0.5.14",
