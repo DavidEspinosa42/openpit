@@ -1,0 +1,120 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: var(--header-h);
+  padding: 0.4rem 1rem;
+  background: var(--chrome);
+  color: var(--chrome-ink);
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+/* A small chequered mark: two squares on the diagonal. */
+.mark {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex: none;
+  background:
+    linear-gradient(
+      45deg,
+      var(--chrome-ink) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--chrome-ink) 75%
+    )
+    0 0 / 0.7rem 0.7rem,
+    linear-gradient(
+      45deg,
+      var(--chrome-ink) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--chrome-ink) 75%
+    )
+    0.35rem 0.35rem / 0.7rem 0.7rem;
+  border: 2px solid var(--chrome-ink);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.school {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius);
+  color: var(--chrome-ink);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 3px solid transparent;
+}
+
+.link:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+
+.link[aria-current="page"] {
+  border-bottom-color: var(--chrome-ink);
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 1rem;
+  background: var(--blocking-soft);
+  color: var(--blocking);
+  border-bottom: 3px solid var(--blocking);
+  font-weight: 600;
+}
+
+.main {
+  padding: 1rem;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.main:focus {
+  outline: none;
+}
+
+.notice {
+  max-width: 44rem;
+  margin: 3rem auto;
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.notice h1 {
+  margin-bottom: 0.75rem;
+}

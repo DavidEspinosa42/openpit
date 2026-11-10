@@ -1,0 +1,285 @@
+/* OpenPit design tokens and base elements.
+   Conflicts are never shown by colour alone: blocking uses a striped kerb edge and a text count,
+   warnings use a dashed edge and a text count. */
+
+:root {
+  --font-display:
+    Bahnschrift, "DIN Alternate", "Franklin Gothic Medium", "Arial Narrow", system-ui, sans-serif;
+  --font-body: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --bg: #e8eaec;
+  --surface: #ffffff;
+  --surface-2: #f2f4f5;
+  --ink: #17202b;
+  --ink-soft: #4a5663;
+  --line: #c3c9cf;
+  --accent: #1c4fa3;
+  --accent-ink: #ffffff;
+  --accent-soft: #dbe6f8;
+  --blocking: #b3122b;
+  --blocking-soft: #fde8eb;
+  --warning: #8a5a00;
+  --warning-soft: #fff1cc;
+  --ok: #1d6b3a;
+  --off-hours: #dfe3e6;
+  --offtrack-soft: #e4ebe6;
+  --focus: #0b57d0;
+  --chrome: #17202b;
+  --chrome-ink: #e8eaec;
+
+  --radius: 6px;
+  --space: 1rem;
+  --header-h: 3.5rem;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12161b;
+    --surface: #1b2128;
+    --surface-2: #232a32;
+    --ink: #e7ebef;
+    --ink-soft: #a9b4bf;
+    --line: #38424d;
+    --accent: #7aa7f0;
+    --accent-ink: #0b1220;
+    --accent-soft: #243a5e;
+    --blocking: #ff8da0;
+    --blocking-soft: #3a1a20;
+    --warning: #f0b44a;
+    --warning-soft: #3a2e12;
+    --ok: #6fd391;
+    --off-hours: #20262d;
+    --offtrack-soft: #232d27;
+    --focus: #9dc0ff;
+    --chrome: #0a0d11;
+    --chrome-ink: #e7ebef;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+h2 {
+  font-size: 1.2rem;
+}
+h3 {
+  font-size: 1rem;
+}
+
+p {
+  margin: 0 0 0.75rem;
+  max-width: 68ch;
+}
+
+a {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Buttons */
+.btn {
+  font: inherit;
+  font-weight: 600;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+.btn:hover {
+  border-color: var(--ink-soft);
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btnPrimary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.btnPrimary:hover {
+  filter: brightness(1.08);
+}
+.btnDanger {
+  color: var(--blocking);
+  border-color: var(--blocking);
+}
+.btnSmall {
+  min-height: 2rem;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.9rem;
+}
+
+/* Form fields */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+.field > label,
+.legend {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.input,
+.select {
+  font: inherit;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--ink-soft);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  width: 100%;
+}
+.hint {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+}
+.error {
+  color: var(--blocking);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.error::before {
+  content: "Problem: ";
+}
+
+fieldset {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin: 0;
+  padding: 0.6rem 0.8rem 0.8rem;
+  min-width: 0;
+}
+legend {
+  padding: 0 0.3rem;
+}
+
+.checks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.25rem 1rem;
+}
+.check {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  min-height: 2rem;
+}
+.check input {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skipLink {
+  position: absolute;
+  left: 0.5rem;
+  top: -4rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius);
+  z-index: 100;
+}
+.skipLink:focus {
+  top: 0.5rem;
+}
+
+/* Tables */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.table th,
+.table td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.table th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  background: var(--surface-2);
+}
+.num {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media print {
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #eeeeee;
+    --ink: #000000;
+    --ink-soft: #333333;
+    --line: #888888;
+    --blocking: #000000;
+    --warning: #000000;
+  }
+  body {
+    font-size: 11pt;
+  }
+  .noPrint {
+    /* biome-ignore lint/complexity/noImportantStyles: must win over component display rules when printing */
+    display: none !important;
+  }
+  @page {
+    size: landscape;
+    margin: 12mm;
+  }
+}
