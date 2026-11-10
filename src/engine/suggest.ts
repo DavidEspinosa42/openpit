@@ -1,3 +1,4 @@
+import { intervalContains } from "../domain/time.ts";
 import type { ScheduleDay, SchoolConfig, Session, Suggestion } from "../domain/types.ts";
 import { validateDay } from "./validate.ts";
 
@@ -34,6 +35,10 @@ export function suggestSlots(
     config.circuit.clearanceMinutes,
     ...config.categories.map((c) => c.turnaroundMinutes),
   );
+  const activity = config.activityTypes.find((a) => a.id === session.activityTypeId);
+  const onKnownLayout =
+    activity?.usesTrack === true && config.circuit.layouts.some((l) => l.id === session.layoutId);
+  const hours = config.circuit.operatingHours;
   const others = day.sessions.filter((s) => s.id !== sessionId && s.status !== "cancelled");
 
   const starts: number[] = [];
@@ -48,6 +53,8 @@ export function suggestSlots(
   const result: Suggestion[] = [];
   for (const start of starts) {
     const end = start + duration;
+    // A track session outside the operating hours is always blocked: skip the full check.
+    if (onKnownLayout && !intervalContains(hours, { startMinute: start, endMinute: end })) continue;
     const moved: Session = { ...session, startMinute: start, endMinute: end };
     const neighbours = others.filter(
       (s) => s.startMinute < end + reach && start < s.endMinute + reach,

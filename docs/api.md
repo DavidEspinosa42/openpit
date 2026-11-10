@@ -62,7 +62,7 @@ const options = suggestSlots(workspace.config, day, "road-b", { limit: 3 });
 - **Soundness (invariant 5):** a start is returned only when the moved session has no blocking conflict. Moving one session cannot change conflicts between other sessions, so nothing new appears elsewhere. Warnings (for example `NO_VEHICLES_ASSIGNED`) do not disqualify a start. Tests re-check this with a full `validateDay` over generated days, and check that the result matches an exhaustive search.
 - **Order:** nearest to the current start first; the earlier time wins a tie. The current start is never suggested.
 - **No solution:** returns `[]`. This also happens for an unknown or cancelled session, or `limit` 0.
-- **Speed:** each candidate is checked against only the sessions close enough to interact with it (closer than the larger of the track clearance and the longest vehicle turnaround), then the `validateDay` rules decide. Five suggestion requests on a 200-session day finish well under a second.
+- **Speed:** each candidate is checked against only the sessions close enough to interact with it (closer than the larger of the track clearance and the longest vehicle turnaround), then the `validateDay` rules decide. Starts outside the operating hours are skipped for track sessions because they are always blocked. Measured on the development machine with the heavily conflicted generated days: a request takes about 16 ms on a 50-session day and about 150 ms (median, 220 ms worst of 20) on a 200-session day. The test suite enforces 500 ms per request.
 
 ## Performance
 

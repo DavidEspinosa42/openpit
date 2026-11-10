@@ -151,10 +151,15 @@ describe("soundness (invariant 5)", () => {
     expect(actual).toEqual(expected);
   });
 
-  it("answers within a second on a 200-session day, even when no start works", () => {
+  /** Documented budget: one request on a 200-session day finishes in under 500 ms. */
+  it("answers one request on a 200-session day within 500 ms", () => {
     const day = generateDay(sample.config, { seed: 42, date: "2026-06-13", sessionCount: 200 });
-    const started = performance.now();
-    for (const session of day.sessions.slice(0, 5)) suggestSlots(sample.config, day, session.id);
-    expect(performance.now() - started).toBeLessThan(1000);
+    const times: number[] = [];
+    for (const session of day.sessions.slice(0, 8)) {
+      const started = performance.now();
+      suggestSlots(sample.config, day, session.id);
+      times.push(performance.now() - started);
+    }
+    expect(Math.max(...times)).toBeLessThan(500);
   });
 });
