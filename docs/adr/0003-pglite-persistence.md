@@ -1,6 +1,6 @@
-# 0003. PGlite persisted to IndexedDB (proposed, pending spike)
+# 0003. PGlite persisted to IndexedDB
 
-- Status: proposed; to be confirmed or reversed by the M4 spike
+- Status: accepted; confirmed by the M4 spike, see [0004](0004-persistence-spike-result.md)
 - Date: 2026-11-10
 
 ## Context
