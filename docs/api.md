@@ -50,6 +50,20 @@ Each distinct violation appears once. The engine returns codes and parameters; t
 
 True when at least one conflict has severity `blocking`.
 
+## `suggestSlots(config, day, sessionId, { limit? }): Suggestion[]`
+
+Proposes up to `limit` (default 3) other start times for one session. The duration is kept and starts stay on the grid.
+
+```ts
+const options = suggestSlots(workspace.config, day, "road-b", { limit: 3 });
+// [{ sessionId: "road-b", startMinute: 670, endMinute: 730, shiftMinutes: 70 }, ...]
+```
+
+- **Soundness (invariant 5):** a start is returned only when the moved session has no blocking conflict. Moving one session cannot change conflicts between other sessions, so nothing new appears elsewhere. Warnings (for example `NO_VEHICLES_ASSIGNED`) do not disqualify a start. Tests re-check this with a full `validateDay` over generated days, and check that the result matches an exhaustive search.
+- **Order:** nearest to the current start first; the earlier time wins a tie. The current start is never suggested.
+- **No solution:** returns `[]`. This also happens for an unknown or cancelled session, or `limit` 0.
+- **Speed:** each candidate is checked against only the sessions close enough to interact with it (closer than the larger of the track clearance and the longest vehicle turnaround), then the `validateDay` rules decide. Five suggestion requests on a 200-session day finish well under a second.
+
 ## Performance
 
 A 200-session generated day (about 3,800 conflicts, far more than a real schedule) validates in roughly 12 ms on the development machine (Node 26.13). The test suite enforces a budget of 250 ms to leave room for slow CI machines. Pair-wise rules are quadratic in the number of sessions; 1,000 sessions took about 200 ms.
