@@ -41,21 +41,21 @@ There are no person fields. A session carries a free-text `label` only (invarian
 
 Cancelled sessions are ignored by every rule. "Track session" means an activity type with `usesTrack: true`. Two intervals _overlap_ when `a.start < b.end && b.start < a.end`; touching intervals do not overlap. The _gap_ between two non-overlapping intervals is `later.start - earlier.end`.
 
-| Code                           | Severity | Fires when                                                                                           | Assumption                                                         |
-| ------------------------------ | -------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| `OUTSIDE_OPERATING_HOURS`      | blocking | a track session is not fully inside the operating hours                                              | Off-track work (e.g. preparation) may happen outside opening hours |
-| `TRACK_SECTION_OVERLAP`        | blocking | two track sessions overlap in time and their layouts share at least one section                      | Same layout shares all its sections                                |
-| `TRACK_CLEARANCE_TOO_SHORT`    | blocking | two non-overlapping track sessions share a section and the gap is below `circuit.clearanceMinutes`   | Default 10 minutes in the sample; `0` disables the rule            |
-| `TRACK_CLOSED`                 | blocking | a track session overlaps a closure of a section in its layout                                        |                                                                    |
-| `LAYOUT_CAPACITY_EXCEEDED`     | blocking | assigned vehicles of a category exceed the layout capacity for that category (missing entry means 0) | One conflict per session and category                              |
-| `CATEGORY_NOT_ALLOWED`         | blocking | a vehicle's category is not allowed for the activity type                                            | One conflict per session and vehicle                               |
-| `MIXED_CATEGORIES`             | blocking | the activity type forbids mixing and the vehicles span more than one category                        |                                                                    |
-| `VEHICLE_DOUBLE_BOOKED`        | blocking | a vehicle is in two overlapping sessions                                                             | One conflict per session pair and vehicle                          |
-| `VEHICLE_UNAVAILABLE`          | blocking | a vehicle's status is not `available`, or its session overlaps an unavailability window              | One conflict per session, vehicle and cause                        |
-| `VEHICLE_TURNAROUND_TOO_SHORT` | blocking | a vehicle is in two non-overlapping sessions and the gap is below the category turnaround            | `turnaroundMinutes` of the vehicle's category                      |
-| `PIT_BOX_DOUBLE_BOOKED`        | blocking | two overlapping sessions use the same pit box                                                        | A pit box serves one session at a time                             |
-| `PIT_BOX_CAPACITY_EXCEEDED`    | blocking | a session assigns pit boxes and has more vehicles than their combined capacity                       | Not evaluated when no pit box is assigned                          |
-| `NO_VEHICLES_ASSIGNED`         | warning  | a planned session has no vehicles                                                                    |                                                                    |
+| Code                           | Severity | Fires when                                                                                           | Assumption                                                                     |
+| ------------------------------ | -------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `OUTSIDE_OPERATING_HOURS`      | blocking | a track session is not fully inside the operating hours                                              | Off-track work (e.g. preparation) may happen outside opening hours             |
+| `TRACK_SECTION_OVERLAP`        | blocking | two track sessions overlap in time and their layouts share at least one section                      | Same layout shares all its sections                                            |
+| `TRACK_CLEARANCE_TOO_SHORT`    | blocking | two non-overlapping track sessions share a section and the gap is below `circuit.clearanceMinutes`   | Default 10 minutes in the sample; `0` disables the rule                        |
+| `TRACK_CLOSED`                 | blocking | a track session overlaps a closure of a section in its layout                                        |                                                                                |
+| `LAYOUT_CAPACITY_EXCEEDED`     | blocking | assigned vehicles of a category exceed the layout capacity for that category (missing entry means 0) | One conflict per session and category                                          |
+| `CATEGORY_NOT_ALLOWED`         | blocking | a vehicle's category is not allowed for the activity type                                            | One conflict per session and vehicle                                           |
+| `MIXED_CATEGORIES`             | blocking | the activity type forbids mixing and the vehicles span more than one category                        |                                                                                |
+| `VEHICLE_DOUBLE_BOOKED`        | blocking | a vehicle is in two overlapping sessions                                                             | One conflict per session pair and vehicle                                      |
+| `VEHICLE_UNAVAILABLE`          | blocking | a vehicle's status is not `available`, or its session overlaps an unavailability window              | One conflict per session, vehicle and cause                                    |
+| `VEHICLE_TURNAROUND_TOO_SHORT` | blocking | a vehicle is in two non-overlapping sessions and the gap is below the category turnaround            | `turnaroundMinutes` of the vehicle's category                                  |
+| `PIT_BOX_DOUBLE_BOOKED`        | blocking | two overlapping sessions use the same pit box                                                        | A pit box serves one session at a time                                         |
+| `PIT_BOX_CAPACITY_EXCEEDED`    | blocking | a session assigns pit boxes and has more vehicles than their combined capacity                       | Not evaluated when no pit box is assigned                                      |
+| `NO_VEHICLES_ASSIGNED`         | warning  | a planned session has no vehicles and its activity type allows at least one category                 | Activities that allow no category (for example a briefing) never need vehicles |
 
 That is 13 codes: 12 blocking and 1 warning.
 
@@ -70,3 +70,7 @@ Conflicts are sorted by severity (blocking first), then code order as listed abo
 ## Out of scope
 
 Student or instructor personal data, bookings and payments, live timing, official race control or safety signaling.
+
+## Workspace file
+
+A workspace file is JSON with `formatVersion: 1`, a `config` (the school configuration) and `days`. All objects are strict: unknown keys are rejected. Import files larger than 5 MiB are rejected before parsing. Structural integrity (schema, unique IDs, references, track/off-track consistency, grid alignment) is checked on import; scheduling conflicts are not. The fictional example is `data/samples/fictional-ridge.json`.

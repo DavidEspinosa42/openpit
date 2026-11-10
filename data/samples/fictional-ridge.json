@@ -1,0 +1,407 @@
+{
+  "formatVersion": 1,
+  "config": {
+    "name": "Fictional Ridge Driving School",
+    "gridMinutes": 5,
+    "circuit": {
+      "id": "imaginary-ridge",
+      "name": "Imaginary Ridge Circuit",
+      "sections": [
+        {
+          "id": "s-main",
+          "name": "Main straight"
+        },
+        {
+          "id": "s-north",
+          "name": "North loop"
+        },
+        {
+          "id": "s-south",
+          "name": "South loop"
+        },
+        {
+          "id": "s-kart",
+          "name": "Kart track"
+        }
+      ],
+      "layouts": [
+        {
+          "id": "l-full",
+          "name": "Full circuit",
+          "sectionIds": ["s-main", "s-north", "s-south"],
+          "capacity": {
+            "c-road": 6,
+            "c-race": 4
+          }
+        },
+        {
+          "id": "l-short",
+          "name": "Short circuit",
+          "sectionIds": ["s-main", "s-north"],
+          "capacity": {
+            "c-road": 4,
+            "c-race": 3
+          }
+        },
+        {
+          "id": "l-south",
+          "name": "South loop only",
+          "sectionIds": ["s-south"],
+          "capacity": {
+            "c-road": 2,
+            "c-race": 2
+          }
+        },
+        {
+          "id": "l-kart",
+          "name": "Kart track",
+          "sectionIds": ["s-kart"],
+          "capacity": {
+            "c-kart": 8
+          }
+        }
+      ],
+      "operatingHours": {
+        "startMinute": 480,
+        "endMinute": 1080
+      },
+      "clearanceMinutes": 10
+    },
+    "categories": [
+      {
+        "id": "c-kart",
+        "name": "Karts",
+        "turnaroundMinutes": 10
+      },
+      {
+        "id": "c-road",
+        "name": "Road cars",
+        "turnaroundMinutes": 15
+      },
+      {
+        "id": "c-race",
+        "name": "Race cars",
+        "turnaroundMinutes": 30
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "kart-1",
+        "name": "Kart 1",
+        "categoryId": "c-kart",
+        "status": "available"
+      },
+      {
+        "id": "kart-2",
+        "name": "Kart 2",
+        "categoryId": "c-kart",
+        "status": "available"
+      },
+      {
+        "id": "kart-3",
+        "name": "Kart 3",
+        "categoryId": "c-kart",
+        "status": "available"
+      },
+      {
+        "id": "kart-4",
+        "name": "Kart 4",
+        "categoryId": "c-kart",
+        "status": "available"
+      },
+      {
+        "id": "road-1",
+        "name": "Road car 1",
+        "categoryId": "c-road",
+        "status": "available"
+      },
+      {
+        "id": "road-2",
+        "name": "Road car 2",
+        "categoryId": "c-road",
+        "status": "available"
+      },
+      {
+        "id": "road-3",
+        "name": "Road car 3",
+        "categoryId": "c-road",
+        "status": "available"
+      },
+      {
+        "id": "road-4",
+        "name": "Road car 4",
+        "categoryId": "c-road",
+        "status": "available"
+      },
+      {
+        "id": "road-5",
+        "name": "Road car 5",
+        "categoryId": "c-road",
+        "status": "maintenance"
+      },
+      {
+        "id": "race-1",
+        "name": "Race car 1",
+        "categoryId": "c-race",
+        "status": "available"
+      },
+      {
+        "id": "race-2",
+        "name": "Race car 2",
+        "categoryId": "c-race",
+        "status": "available"
+      },
+      {
+        "id": "race-3",
+        "name": "Race car 3",
+        "categoryId": "c-race",
+        "status": "available"
+      }
+    ],
+    "activityTypes": [
+      {
+        "id": "a-practice",
+        "name": "Track practice",
+        "usesTrack": true,
+        "allowedCategoryIds": ["c-road", "c-race"],
+        "mixingAllowed": false
+      },
+      {
+        "id": "a-lapping",
+        "name": "Open lapping",
+        "usesTrack": true,
+        "allowedCategoryIds": ["c-kart", "c-road", "c-race"],
+        "mixingAllowed": true
+      },
+      {
+        "id": "a-karting",
+        "name": "Karting",
+        "usesTrack": true,
+        "allowedCategoryIds": ["c-kart"],
+        "mixingAllowed": false
+      },
+      {
+        "id": "a-prep",
+        "name": "Mechanical preparation",
+        "usesTrack": false,
+        "allowedCategoryIds": ["c-kart", "c-road", "c-race"],
+        "mixingAllowed": true
+      },
+      {
+        "id": "a-brief",
+        "name": "Briefing",
+        "usesTrack": false,
+        "allowedCategoryIds": [],
+        "mixingAllowed": true
+      }
+    ],
+    "pitBoxes": [
+      {
+        "id": "pb-1",
+        "name": "Pit box 1",
+        "capacity": 4
+      },
+      {
+        "id": "pb-2",
+        "name": "Pit box 2",
+        "capacity": 3
+      },
+      {
+        "id": "pb-3",
+        "name": "Pit box 3",
+        "capacity": 2
+      }
+    ]
+  },
+  "days": [
+    {
+      "date": "2026-06-13",
+      "revision": 0,
+      "sessions": [
+        {
+          "id": "brief",
+          "label": "Morning briefing",
+          "activityTypeId": "a-brief",
+          "layoutId": null,
+          "startMinute": 450,
+          "endMinute": 480,
+          "vehicleIds": [],
+          "pitBoxIds": [],
+          "status": "planned"
+        },
+        {
+          "id": "prep1",
+          "label": "Prepare road cars",
+          "activityTypeId": "a-prep",
+          "layoutId": null,
+          "startMinute": 450,
+          "endMinute": 510,
+          "vehicleIds": ["road-1", "road-2"],
+          "pitBoxIds": ["pb-1"],
+          "status": "planned"
+        },
+        {
+          "id": "prep2",
+          "label": "Extra preparation",
+          "activityTypeId": "a-prep",
+          "layoutId": null,
+          "startMinute": 480,
+          "endMinute": 525,
+          "vehicleIds": ["road-2"],
+          "pitBoxIds": [],
+          "status": "planned"
+        },
+        {
+          "id": "open-track",
+          "label": "Open kart track",
+          "activityTypeId": "a-karting",
+          "layoutId": "l-kart",
+          "startMinute": 540,
+          "endMinute": 600,
+          "vehicleIds": [],
+          "pitBoxIds": [],
+          "status": "planned"
+        },
+        {
+          "id": "road-a",
+          "label": "Road practice A",
+          "activityTypeId": "a-practice",
+          "layoutId": "l-full",
+          "startMinute": 540,
+          "endMinute": 600,
+          "vehicleIds": ["road-1", "road-2", "road-3"],
+          "pitBoxIds": ["pb-1"],
+          "status": "planned"
+        },
+        {
+          "id": "road-b",
+          "label": "Road practice B",
+          "activityTypeId": "a-practice",
+          "layoutId": "l-short",
+          "startMinute": 600,
+          "endMinute": 660,
+          "vehicleIds": ["road-1", "road-4"],
+          "pitBoxIds": ["pb-1"],
+          "status": "planned"
+        },
+        {
+          "id": "race-a",
+          "label": "Race car practice",
+          "activityTypeId": "a-practice",
+          "layoutId": "l-full",
+          "startMinute": 700,
+          "endMinute": 760,
+          "vehicleIds": ["race-1", "race-2"],
+          "pitBoxIds": ["pb-2"],
+          "status": "planned"
+        },
+        {
+          "id": "kart-a",
+          "label": "Karting session",
+          "activityTypeId": "a-karting",
+          "layoutId": "l-kart",
+          "startMinute": 700,
+          "endMinute": 760,
+          "vehicleIds": ["kart-1", "kart-2", "kart-3"],
+          "pitBoxIds": ["pb-2"],
+          "status": "planned"
+        },
+        {
+          "id": "south-over",
+          "label": "South loop drill",
+          "activityTypeId": "a-practice",
+          "layoutId": "l-south",
+          "startMinute": 720,
+          "endMinute": 780,
+          "vehicleIds": ["race-3"],
+          "pitBoxIds": ["pb-3"],
+          "status": "planned"
+        },
+        {
+          "id": "kart-wrong",
+          "label": "Kart in practice slot",
+          "activityTypeId": "a-practice",
+          "layoutId": "l-kart",
+          "startMinute": 800,
+          "endMinute": 830,
+          "vehicleIds": ["kart-4"],
+          "pitBoxIds": [],
+          "status": "planned"
+        },
+        {
+          "id": "short-pm",
+          "label": "Afternoon short circuit",
+          "activityTypeId": "a-practice",
+          "layoutId": "l-short",
+          "startMinute": 840,
+          "endMinute": 900,
+          "vehicleIds": ["road-4"],
+          "pitBoxIds": [],
+          "status": "planned"
+        },
+        {
+          "id": "south-lap",
+          "label": "South loop lapping",
+          "activityTypeId": "a-lapping",
+          "layoutId": "l-south",
+          "startMinute": 880,
+          "endMinute": 940,
+          "vehicleIds": ["kart-4"],
+          "pitBoxIds": [],
+          "status": "planned"
+        },
+        {
+          "id": "mixed",
+          "label": "Mixed practice",
+          "activityTypeId": "a-practice",
+          "layoutId": "l-full",
+          "startMinute": 960,
+          "endMinute": 1020,
+          "vehicleIds": ["road-2", "road-3", "race-1"],
+          "pitBoxIds": ["pb-3"],
+          "status": "planned"
+        },
+        {
+          "id": "evening",
+          "label": "Evening lapping",
+          "activityTypeId": "a-lapping",
+          "layoutId": "l-full",
+          "startMinute": 1020,
+          "endMinute": 1100,
+          "vehicleIds": ["road-5"],
+          "pitBoxIds": [],
+          "status": "planned"
+        },
+        {
+          "id": "cancelled",
+          "label": "Cancelled practice",
+          "activityTypeId": "a-practice",
+          "layoutId": "l-full",
+          "startMinute": 700,
+          "endMinute": 760,
+          "vehicleIds": ["road-1"],
+          "pitBoxIds": [],
+          "status": "cancelled"
+        }
+      ],
+      "closures": [
+        {
+          "id": "closure-north",
+          "sectionId": "s-north",
+          "startMinute": 840,
+          "endMinute": 900,
+          "reason": "Barrier repair"
+        }
+      ],
+      "unavailabilities": [
+        {
+          "id": "unavail-kart-2",
+          "vehicleId": "kart-2",
+          "startMinute": 700,
+          "endMinute": 730,
+          "reason": "Tire change"
+        }
+      ]
+    }
+  ]
+}
