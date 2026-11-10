@@ -4,14 +4,14 @@ Checked on 2026-11-10 with web searches. This is a quick survey, not a market st
 
 ## What was looked at
 
-| Source | What it is | Relevant finding |
-| --- | --- | --- |
-| [MotorsportReg](https://www.motorsportreg.com) (pages and blog under `motorsportreg.com`, found by search) | Hosted registration, payment, communication and results platform for track days, autocross and karting | Focused on registration, payments, waivers, check-in, timing import and reports. The pages found did not describe checking a day schedule for track-section, vehicle or pit-box conflicts. |
-| General open-source schedulers (for example the open-source calendar and booking tools discussed on `cal.com` and listed on SourceForge and Capterra) | Appointment and booking systems | Built around bookable time slots and rooms or equipment. None of the results mentioned track layouts that share sections, vehicle turnaround, or pit boxes. |
+| Source                                                                                                                                                | What it is                                                                                             | Relevant finding                                                                                                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [MotorsportReg](https://www.motorsportreg.com) (pages and blog under `motorsportreg.com`, found by search)                                            | Hosted registration, payment, communication and results platform for track days, autocross and karting | Focused on registration, payments, waivers, check-in, timing import and reports. The pages found did not describe checking a day schedule for track-section, vehicle or pit-box conflicts. |
+| General open-source schedulers (for example the open-source calendar and booking tools discussed on `cal.com` and listed on SourceForge and Capterra) | Appointment and booking systems                                                                        | Built around bookable time slots and rooms or equipment. None of the results mentioned track layouts that share sections, vehicle turnaround, or pit boxes.                                |
 
 ## What was not found
 
-- A search for open-source track-day or racing-school *schedule planning* software returned only generic scheduling tools. No dedicated open-source project was found. This does not prove none exists; the search was shallow.
+- A search for open-source track-day or racing-school _schedule planning_ software returned only generic scheduling tools. No dedicated open-source project was found. This does not prove none exists; the search was shallow.
 
 ## Position of OpenPit
 
