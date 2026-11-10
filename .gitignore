@@ -25,7 +25,6 @@ next-env.d.ts
 .DS_Store
 Thumbs.db
 
-# editor and local tool settings
+# editor settings
 .vscode/
 .idea/
-.claude/
