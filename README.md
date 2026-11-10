@@ -72,7 +72,6 @@ Versions are read from `package.json` and pinned exactly. Dependencies must be a
 - **One tab at a time.** A second tab shows a notice instead of editing.
 - **Tested in Chromium only.** Firefox and Safari were not tried. Accessibility was checked with an automated audit and by hand for the keyboard path, not with a full WCAG audit.
 - **First open is slow.** The database is a multi-megabyte WebAssembly download; the first open took about two seconds on the development machine.
-- **The CI workflow has not run yet.** The repository has local commits only, so `.github/workflows/ci.yml` has not executed on GitHub. Its steps were run locally.
 
 ## Documentation
 

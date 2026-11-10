@@ -18,7 +18,6 @@ Estimates are planning figures made on 2026-11-10, not commitments. The MVP esti
 ### Known limits of the MVP
 
 - Verified in Chromium only. Firefox and Safari were not tried.
-- The GitHub Actions workflow has not run on GitHub; its steps were run locally.
 - Accessibility: automated audit and a hand check of the keyboard path; no full WCAG 2.2 AA audit (R8).
 - The print layout was checked by applying the print rules on screen, not in a real print preview.
 - Not installable and not usable offline from a cold start (R1).
