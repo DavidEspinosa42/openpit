@@ -88,7 +88,7 @@ Automated tests cover the logic; the screens are checked by hand. Run `pnpm buil
 7. On `/data`, export a backup: the file has `formatVersion` 1 and the saved change. Import a file with `{"formatVersion":1,"config":{"name":"x"},"days":[]}`: it is rejected with a list of problems and the stored data is unchanged.
 8. In the planner, press "Print day schedule" and check the print preview: the header, timeline and forms are hidden; the schedule table lists each session with its conflicts in text.
 
-Step 8 was not exercised in a real print preview; the print rules are in `globals.css` and `planner.module.css`.
+Step 8 was checked by simulation, not in a real print preview: the `@media print` rules were extracted from the loaded stylesheets and applied on screen. The header, day bar, timeline, conflicts panel, adjustments and edit buttons were hidden, and the schedule table with its 17 conflict lines stayed visible. Page breaks and paper size were not checked. The print rules are in `globals.css` and `planner.module.css`.
 
 ## Accessibility checks
 
