@@ -1,0 +1,198 @@
+.scroller {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  --row-h: 4.6rem;
+}
+
+.board {
+  position: relative;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.label {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  margin: 0;
+  padding: 0.5rem 0.7rem;
+  background: var(--surface-2);
+  border-right: 1px solid var(--line);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.axis {
+  position: relative;
+  height: 2rem;
+  background: var(--surface-2);
+}
+
+.tick {
+  position: absolute;
+  top: 0.35rem;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.tick:first-child {
+  transform: none;
+  padding-left: 0.2rem;
+}
+
+.track {
+  position: relative;
+  background: var(--off-hours);
+}
+
+.hours {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--surface);
+}
+
+.gridline {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+  opacity: 0.7;
+}
+
+.closure {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border-left: 2px solid var(--ink);
+  border-right: 2px solid var(--ink);
+  background: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, var(--ink) 22%, transparent) 0 7px,
+    transparent 7px 14px
+  );
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.closure span {
+  background: var(--surface);
+  padding: 0 0.3rem;
+  margin: 0 0.2rem 0.15rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item {
+  position: absolute;
+  z-index: 2;
+  height: calc(var(--row-h) - 0.4rem);
+  min-width: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.05rem;
+  padding: 0.15rem 0.5rem 0.15rem 0.9rem;
+  overflow: hidden;
+  text-align: left;
+  font: inherit;
+  font-size: 0.85rem;
+  line-height: 1.25;
+  color: var(--ink);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.item:hover {
+  filter: brightness(0.97);
+  border-color: var(--ink);
+}
+
+.offTrack {
+  background: var(--offtrack-soft);
+  border-color: var(--ink-soft);
+}
+
+/* Blocking: a striped kerb edge on the left, a solid red border and a text count. */
+.blocking {
+  border: 2px solid var(--blocking);
+  background-color: var(--blocking-soft);
+}
+
+.blocking::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0.5rem;
+  background: repeating-linear-gradient(-45deg, var(--blocking) 0 5px, var(--surface) 5px 10px);
+}
+
+/* Warning: a dashed amber border and a text count. */
+.warning {
+  border: 2px dashed var(--warning);
+  background-color: var(--warning-soft);
+}
+
+.cancelled {
+  background: repeating-linear-gradient(45deg, var(--surface-2) 0 6px, var(--surface) 6px 12px);
+  border: 1px dashed var(--ink-soft);
+  color: var(--ink-soft);
+}
+
+.title {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cancelled .title {
+  text-decoration: line-through;
+}
+
+.time {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.badge {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.blocking .badge {
+  color: var(--blocking);
+}
+
+.warning .badge {
+  color: var(--warning);
+}

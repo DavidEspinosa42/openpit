@@ -108,7 +108,9 @@ export interface TimelineItem {
   readonly cancelled: boolean;
   readonly blocking: number;
   readonly warnings: number;
-  /** Full text for assistive technology. */
+  /** Conflict status in words, for example "2 blocking conflicts" or "no conflicts". */
+  readonly statusText: string;
+  /** Full text for the tooltip. */
   readonly description: string;
 }
 
@@ -224,6 +226,7 @@ export function buildTimeline(
           cancelled: session.status === "cancelled",
           blocking: counts.blocking,
           warnings: counts.warning,
+          statusText: status,
           description: `${title}, ${activityName}, ${timeText}, ${status}`,
         };
       })
