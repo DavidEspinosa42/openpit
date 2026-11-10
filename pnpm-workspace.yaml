@@ -1,0 +1,4 @@
+# Dependency policy: exact pins, 7-day release age, reviewed build scripts.
+minimumReleaseAge: 10080
+savePrefix: ""
+allowBuilds: {}

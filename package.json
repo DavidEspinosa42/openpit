@@ -1,0 +1,38 @@
+{
+  "name": "openpit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first track-day schedule planner with a deterministic conflict engine for racing schools.",
+  "license": "MIT",
+  "author": "David Espinosa",
+  "type": "module",
+  "packageManager": "pnpm@12.16.1",
+  "engines": {
+    "node": ">=26.13.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "test": "vitest run",
+    "validate": "node scripts/validate-schedule.ts",
+    "generate:sample": "node scripts/generate-sample.ts"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "0.5.14",
+    "next": "16.4.4",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.4",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0"
+  }
+}
