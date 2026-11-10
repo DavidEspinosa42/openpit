@@ -74,3 +74,22 @@ The engine isolation rule is enforced twice: a Biome `noRestrictedImports` overr
 ## Dependency policy
 
 Direct dependencies are pinned exactly (`savePrefix: ''`), `pnpm-lock.yaml` is committed, `minimumReleaseAge` is 10080 minutes (7 days), build scripts of dependencies are reviewed through `allowBuilds`, and CI installs with `--frozen-lockfile`.
+
+## Manual walkthrough
+
+Automated tests cover the logic; the screens are checked by hand. Run `pnpm build`, serve the `out` folder with any static file server (for example `npx serve out`), and open it in a Chromium-based browser. This walkthrough was run against the production build on 2026-11-10 with the fictional sample, using scripted browser actions.
+
+1. Open `/`. With a fresh profile the planner offers "Load the fictional sample school". Choose it. The header shows the school name, the timeline shows five lanes, and the conflicts panel reports 14 blocking conflicts and 1 warning, the same as `pnpm validate`.
+2. Open "Road practice B" from the timeline. The dialog lists two conflicts for the session (track clearance and vehicle turnaround). Press "Suggest a time". The first suggestion is 10:15-11:15 (10 minutes of clearance would allow 10:10, but the vehicle needs a 15-minute turnaround). Press "Use 10:15-11:15": the preview shows no conflicts. Press "Save session". The dialog closes and the panel reports 12 blocking conflicts.
+3. Reload the page. The session is still at 10:15-11:15 and the panel still reports 12 blocking conflicts.
+4. In "Adjustments for the day", close "Main straight" from 09:00 to 10:00. "Road practice A" gets a "Track section closed" conflict. Enter `9am` as the start: the form shows an error instead of saving. Remove the closure again.
+5. Press Tab until a session on the timeline has focus, then Enter: the dialog opens with focus inside it. Press Escape: the dialog closes and focus returns to the same session.
+6. Open a second tab on the same address. It shows "OpenPit is already open in another tab".
+7. On `/data`, export a backup: the file has `formatVersion` 1 and the saved change. Import a file with `{"formatVersion":1,"config":{"name":"x"},"days":[]}`: it is rejected with a list of problems and the stored data is unchanged.
+8. In the planner, press "Print day schedule" and check the print preview: the header, timeline and forms are hidden; the schedule table lists each session with its conflicts in text.
+
+Step 8 was not exercised in a real print preview; the print rules are in `globals.css` and `planner.module.css`.
+
+## Accessibility checks
+
+Lighthouse (Chrome DevTools, desktop and mobile, snapshot mode) scored the planner 100 for accessibility on 2026-11-10 after one fix (accessible names of timeline items must contain their visible text). That is an automated check and covers only part of WCAG 2.2 AA; a full audit is planned for roadmap phase R8. Keyboard operation of the session dialog was checked by hand as in step 5. Conflicts are shown with text, a striped or dashed border and a count, not by colour alone.
